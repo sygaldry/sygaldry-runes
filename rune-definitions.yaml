@@ -1,35 +1,34 @@
-runes:
-  MavenRune:
-    params:
-    - mavenHome
-    - stages
-    - version
-    - opts
-    values:
-      Image: docker.io/sygaldry/maven-rune:{{ .Values.version }}
+MavenRune:
+  params:
+  - mavenHome
+  - stages
+  - version
+  - opts
+  values:
+    Image: docker.io/sygaldry/maven-rune:{{ .Values.version }}
+  Env:
+  - stages={{ .Values.stages }}
+  - opts={{ or .Values.opts "" }}
+  Volumes:
+  - {{ or .Values.mavenHome "~/.m2" }}:/home/sygaldry/.m2
+DockerRune:
+  params:
+  - version
+  - command
+  - args
+  - image
+  values:
+    Image: {{ or .Values.image "docker.io/sygaldry/docker-rune" }}:{{ or .Values.version "latest" }}
     Env:
-    - stages={{ .Values.stages }}
-    - opts={{ or .Values.opts "" }}
-    Volumes:
-    - {{ or .Values.mavenHome "~/.m2" }}:/home/sygaldry/.m2
-  DockerRune:
-    params:
-    - version
-    - command
-    - args
-    - image
-    values:
-      Image: {{ or .Values.image "docker.io/sygaldry/docker-rune" }}:{{ or .Values.version "latest" }}
-      Env:
-      - command={{ .Values.command }}
-      - args={{ .Values.command }}
-  TerraformRune:
-    params:
-    - terraformFolder
-    - tfvars
-    - image
-    values:
-      Image: {{ or .Values.image "docker.io/sygaldry/terraform-rune" }}:{{ or .Values.version "latest" }}
-      Env:
-      - terraformFolder={{ or .Values.terraformFolder "." }}
-      - tfvars={{ or "--var-file {{ StringsJoin .Values.tfvars \" --var-file \" }}" "" }
+    - command={{ .Values.command }}
+    - args={{ .Values.command }}
+TerraformRune:
+  params:
+  - terraformFolder
+  - tfvars
+  - image
+  values:
+    Image: {{ or .Values.image "docker.io/sygaldry/terraform-rune" }}:{{ or .Values.version "latest" }}
+    Env:
+    - terraformFolder={{ or .Values.terraformFolder "." }}
+    - tfvars={{ or "--var-file {{ StringsJoin .Values.tfvars \" --var-file \" }}" "" }
