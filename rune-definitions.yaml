@@ -20,8 +20,8 @@ DockerRune:
   values:
     Image: "{{ or .image \"docker.io/sygaldry/docker-rune\" }}:{{ or .version \"latest\" }}"
     Env:
-    - command={{ .command }}
-    - args={{ .command }}
+    - \\"command={{ .command }}\\"
+    - \\"args={{ .args }}\\"
     Volumes:
 TerraformRune:
   params:
