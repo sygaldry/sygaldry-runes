@@ -7,8 +7,8 @@ MavenRune:
   values:
     Image: docker.io/sygaldry/maven-rune:{{ .version }}
     Env:
-    - \\"stages='{{ .stages }}'\\"
-    - \\"opts={{ or .opts "" }}\\"
+    - \"stages='{{ .stages }}'\"
+    - \"opts={{ or .opts "" }}\"
     Volumes:
     - "{{ or .mavenHome \"~/.m2\" }}:/root/.m2"
 DockerRune:
@@ -20,8 +20,8 @@ DockerRune:
   values:
     Image: "{{ or .image \"docker.io/sygaldry/docker-rune\" }}:{{ or .version \"latest\" }}"
     Env:
-    - \\"command={{ .command }}\\"
-    - \\"args={{ .args }}\\"
+    - \"command={{ .command }}\"
+    - \"args={{ .args }}\"
     Volumes:
 TerraformRune:
   params:
