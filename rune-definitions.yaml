@@ -10,7 +10,7 @@ MavenRune:
     - \\"stages='{{ .stages }}'\\"
     - \\"opts={{ or .opts "" }}\\"
     Volumes:
-    - "{{ or .mavenHome \"~/.m2\" }}:/home/sygaldry/.m2"
+    - "{{ or .mavenHome \"~/.m2\" }}:/root/.m2"
 DockerRune:
   params:
   - version
