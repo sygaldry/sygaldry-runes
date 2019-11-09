@@ -22,6 +22,7 @@ DockerRune:
     Env:
     - command={{ .command }}
     - args={{ .command }}
+    Volumes:
 TerraformRune:
   params:
   - terraformFolder
@@ -32,3 +33,4 @@ TerraformRune:
     Env:
     - terraformFolder={{ or .terraformFolder "." }}
     - tfvars={{ or "--var-file {{ StringsJoin .tfvars \" --var-file \" }}" "" }
+    Volumes:
