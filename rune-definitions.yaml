@@ -38,3 +38,17 @@ TerraformRune:
     - terraformFolder={{ or .terraformFolder "." }}
     - tfvars={{ or "--var-file {{ StringsJoin .tfvars \" --var-file \" }}" "" }
     Volumes:
+KubectlRune:
+  params:
+  - version
+  - command
+  - args
+  - image
+  - kubeConfigPath
+  values:
+    Image: "{{ or .image \"sygaldry/kubectl-rune\"}}:{{or .version \"latest\" }}"
+    Env:
+    - "command='{{ .command }}'"
+    - "args='{{ .args }}'"
+    Volumes:
+    - "{{ or .kubeConfigPath \"~/.kube/config\"}}:/root/.kube/config"
