@@ -18,13 +18,15 @@ DockerRune:
   - args
   - image
   - dockerSocketPath
+  - dockerConfigPath
   values:
     Image: "{{ or .image \"docker.io/sygaldry/docker-rune\" }}:{{ or .version \"latest\" }}"
     Env:
-    - \"command={{ .command }}\"
-    - \"args={{ .args }}\"
+    - "command='{{ .command }}'"
+    - "args='{{ .args }}'"
     Volumes:
     - "{{ or .dockerSocketPath \"/var/run/docker.sock\"}}:/var/run/docker.sock"
+    - "{{ or .dockerConfigPath ~/.docker/config.json }}:/root/.docker/config.json"
 TerraformRune:
   params:
   - terraformFolder
