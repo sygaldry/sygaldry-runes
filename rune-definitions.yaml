@@ -23,7 +23,7 @@ DockerRune:
     Image: "{{ or .image \"docker.io/sygaldry/docker-rune\" }}:{{ or .version \"latest\" }}"
     Env:
     - \\"command='{{ .command }}'\\"
-    - \\"args='{{ .args }}'\\"
+    - "args='{{ .args }}'"
     Volumes:
     - "{{ or .dockerSocketPath \"/var/run/docker.sock\"}}:/var/run/docker.sock"
     - "{{ or .dockerConfigPath \"~/.docker/config.json\" }}:/root/.docker/config.json"
