@@ -77,6 +77,6 @@ AwsRune:
     Env:
     - "command='{{ .command }}'"
     - "args='{{ or .args \"\" }}'"
-    - "AWS_ACCESS_KEY_ID='{{ .awsAccessKey }}'"
-    - "AWS_SECRET_ACCESS_KEY='{{ .awsSecretKey }}"
+    - "AWS_ACCESS_KEY_ID={{ .awsAccessKey }}"
+    - "AWS_SECRET_ACCESS_KEY={{ .awsSecretKey }}"
     Volumes:
