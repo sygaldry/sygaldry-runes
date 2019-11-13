@@ -64,3 +64,15 @@ NpmRune:
     - "command='{{ .command }}'"
     - "args='{{ or .args \"\" }}'"
     Volumes:
+AwsRune:
+  params:
+  - version
+  - command
+  - args
+  - image
+  values:
+    Image: "{{ or .image \"sygaldry/aws-rune\"}}:{{or .version \"latest\" }}"
+    Env:
+    - "command='{{ .command }}'"
+    - "args='{{ or .args \"\" }}'"
+    Volumes:
