@@ -27,17 +27,6 @@ DockerRune:
     Volumes:
     - "{{ or .dockerSocketPath \"/var/run/docker.sock\"}}:/var/run/docker.sock"
     - "{{ or .dockerConfigPath \"~/.docker/config.json\" }}:/root/.docker/config.json"
-TerraformRune:
-  params:
-  - terraformFolder
-  - tfvars
-  - image
-  values:
-    Image: "{{ or .image \"docker.io/sygaldry/terraform-rune\" }}:{{ or .version \"latest\" }}"
-    Env:
-    - terraformFolder={{ or .terraformFolder "." }}
-    - tfvars={{ or "--var-file {{ StringsJoin .tfvars \" --var-file \" }}" "" }
-    Volumes:
 KubectlRune:
   params:
   - version
