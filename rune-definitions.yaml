@@ -52,3 +52,15 @@ KubectlRune:
     - "args='{{ .args }}'"
     Volumes:
     - "{{ or .kubeConfigPath \"~/.kube/config\"}}:/root/.kube/config"
+NpmRune:
+  params:
+  - version
+  - command
+  - args
+  - image
+  values:
+    Image: "{{ or .image \"sygaldry/npm-rune\"}}:{{or .version \"latest\" }}"
+    Env:
+    - "command='{{ .command }}'"
+    - "args='{{ .args }}'"
+    Volumes:
