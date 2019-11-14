@@ -27,17 +27,6 @@ DockerRune:
     Volumes:
     - "{{ or .dockerSocketPath \"/var/run/docker.sock\"}}:/var/run/docker.sock"
     - "{{ or .dockerConfigPath \"~/.docker/config.json\" }}:/root/.docker/config.json"
-TerraformRune:
-  params:
-  - terraformFolder
-  - tfvars
-  - image
-  values:
-    Image: "{{ or .image \"docker.io/sygaldry/terraform-rune\" }}:{{ or .version \"latest\" }}"
-    Env:
-    - terraformFolder={{ or .terraformFolder "." }}
-    - tfvars={{ or "--var-file {{ StringsJoin .tfvars \" --var-file \" }}" "" }
-    Volumes:
 KubectlRune:
   params:
   - version
@@ -52,3 +41,31 @@ KubectlRune:
     - "args='{{ .args }}'"
     Volumes:
     - "{{ or .kubeConfigPath \"~/.kube/config\"}}:/root/.kube/config"
+NpmRune:
+  params:
+  - version
+  - command
+  - args
+  - image
+  values:
+    Image: "{{ or .image \"sygaldry/npm-rune\"}}:{{or .version \"latest\" }}"
+    Env:
+    - "command='{{ .command }}'"
+    - "args='{{ or .args \"\" }}'"
+    Volumes:
+AwsRune:
+  params:
+  - version
+  - command
+  - args
+  - image
+  - awsAccessKey
+  - awsSecretKey
+  values:
+    Image: "{{ or .image \"sygaldry/aws-rune\"}}:{{or .version \"latest\" }}"
+    Env:
+    - "command='{{ .command }}'"
+    - "args='{{ or .args \"\" }}'"
+    - "AWS_ACCESS_KEY_ID=\"{{ .awsAccessKey }}\""
+    - "AWS_SECRET_ACCESS_KEY=\"{{ .awsSecretKey }}\""
+    Volumes:
