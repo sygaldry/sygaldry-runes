@@ -8,7 +8,7 @@
 * command
     * Command executed by the docker cli (e.g. pull, run, ...)
 * args
-    * Arguments for command executed by the docker
+    * Arguments for command executed by the docker cli
 * dockerSocketPath
     * Path to docker sock on host operating system ("/var/run/docker.sock" by default)
 * dockerConfigPath
