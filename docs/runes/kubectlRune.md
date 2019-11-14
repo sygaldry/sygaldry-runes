@@ -13,3 +13,6 @@
     * Path to kube config file on the host operating system (~/.kube/config by default)
 * awsSecretKey
     * Aws secret key used to authenticate to aws
+
+# Navigation
+* [Runes Documentation](./README.md)

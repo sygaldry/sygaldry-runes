@@ -9,3 +9,6 @@
     * Command executed by the npm cli (e.g. test, install, ...)
 * args
     * Arguments for command executed by the npm cli
+
+# Navigation
+* [Runes Documentation](./README.md)

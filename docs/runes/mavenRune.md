@@ -9,3 +9,6 @@
     * Opts for the maven stage execution
 * mavenHome
     * Path to maven home folder on host operation system ("~/.m2" by default)
+
+# Navigation
+* [Runes Documentation](./README.md)
