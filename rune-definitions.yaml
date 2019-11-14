@@ -65,7 +65,7 @@ AwsRune:
     Image: "{{ or .image \"sygaldry/aws-rune\"}}:{{or .version \"latest\" }}"
     Env:
     - "command='{{ .command }}'"
-    - "args='{{ or .args \"\" }}'"
+    - "args=\"{{ or .args '' }}\""
     - "AWS_ACCESS_KEY_ID=\"{{ .awsAccessKey }}\""
     - "AWS_SECRET_ACCESS_KEY=\"{{ .awsSecretKey }}\""
     Volumes:
