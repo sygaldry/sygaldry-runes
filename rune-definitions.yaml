@@ -51,7 +51,7 @@ NpmRune:
     Image: '{{ or .image "sygaldry/npm-rune"}}:{{or .version "latest" }}'
     Env:
     - command="{{ .command }}"
-    - args="{{ or .args \"\" }}"
+    - args="{{ or .args }}"
     Volumes:
 AwsRune:
   params:
