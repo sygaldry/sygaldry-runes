@@ -5,12 +5,12 @@ MavenRune:
   - version
   - opts
   values:
-    Image: docker.io/sygaldry/maven-rune:{{ .version }}
+    Image: "docker.io/sygaldry/maven-rune:{{ .version }}"
     Env:
-    - "stages='{{ .stages }}'"
-    - "opts='{{ or .opts \"\" }}'"
+    - stages="{{ .stages }}"
+    - opts="{{ or .opts "" }}"
     Volumes:
-    - "{{ or .mavenHome \"~/.m2\" }}:/root/.m2"
+    - '{{ or .mavenHome "~/.m2" }}:/root/.m2'
 DockerRune:
   params:
   - version
@@ -20,13 +20,13 @@ DockerRune:
   - dockerSocketPath
   - dockerConfigPath
   values:
-    Image: "{{ or .image \"docker.io/sygaldry/docker-rune\" }}:{{ or .version \"latest\" }}"
+    Image: '{{ or .image "docker.io/sygaldry/docker-rune" }}:{{ or .version "latest" }}'
     Env:
-    - "command='{{ .command }}'"
-    - "args='{{ .args }}'"
+    - command="{{ .command }}"
+    - args="{{ .args }}"
     Volumes:
-    - "{{ or .dockerSocketPath \"/var/run/docker.sock\"}}:/var/run/docker.sock"
-    - "{{ or .dockerConfigPath \"~/.docker/config.json\" }}:/root/.docker/config.json"
+    - '{{ or .dockerSocketPath "/var/run/docker.sock"}}:/var/run/docker.sock'
+    - '{{ or .dockerConfigPath "~/.docker/config.json" }}:/root/.docker/config.json'
 KubectlRune:
   params:
   - version
@@ -35,12 +35,12 @@ KubectlRune:
   - image
   - kubeConfigPath
   values:
-    Image: "{{ or .image \"sygaldry/kubectl-rune\"}}:{{or .version \"latest\" }}"
+    Image: '{{ or .image "sygaldry/kubectl-rune"}}:{{or .version "latest" }}'
     Env:
-    - "command='{{ .command }}'"
-    - "args='{{ .args }}'"
+    - command="{{ .command }}"
+    - args="{ .args }}"
     Volumes:
-    - "{{ or .kubeConfigPath \"~/.kube/config\"}}:/root/.kube/config"
+    - '{{ or .kubeConfigPath "~/.kube/config"}}:/root/.kube/config'
 NpmRune:
   params:
   - version
@@ -48,10 +48,10 @@ NpmRune:
   - args
   - image
   values:
-    Image: "{{ or .image \"sygaldry/npm-rune\"}}:{{or .version \"latest\" }}"
+    Image: '{{ or .image "sygaldry/npm-rune"}}:{{or .version "latest" }}'
     Env:
-    - "command='{{ .command }}'"
-    - "args='{{ or .args \"\" }}'"
+    - command="{{ .command }}"
+    - args="{{ or .args \"\" }}"
     Volumes:
 AwsRune:
   params:
@@ -62,10 +62,10 @@ AwsRune:
   - awsAccessKey
   - awsSecretKey
   values:
-    Image: "{{ or .image \"sygaldry/aws-rune\"}}:{{or .version \"latest\" }}"
+    Image: '{{ or .image "sygaldry/aws-rune"}}:{{or .version "latest" }}'
     Env:
-    - "command='{{ .command }}'"
-    - "args='{{ or .args \"\" }}'"
-    - "AWS_ACCESS_KEY_ID=\"{{ .awsAccessKey }}\""
-    - "AWS_SECRET_ACCESS_KEY=\"{{ .awsSecretKey }}\""
+    - command="{{ .command }}"
+    - args="{{ .args }}"
+    - AWS_ACCESS_KEY_ID="{{ .awsAccessKey }}"
+    - AWS_SECRET_ACCESS_KEY="{{ .awsSecretKey }}"
     Volumes:
